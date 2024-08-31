@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Mental Health Support</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: url("{% static 'images/background2.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+    h1 {
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 4rem;
+        margin: 0 0 10px 0;
+    }
+    .button-container {
+        display: flex;
+        gap: 10px;
+    }
+    .button-container a {
+        color: rgba(0, 0, 0, 0.7);
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: 2px solid rgba(0, 0, 0, 0.7);
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
+        display: inline-block;
+    }
+    .button-container a:hover {
+        background-color: #ffd700;
+        color: #000;
+    }
+    .quote-container {
+        position: absolute;
+        right: -224px;
+        top: 30%;
+        transform: translateY(-50%) rotate(5deg);
+        max-width: 20%;
+        background: url(/static/images/qbg.jpg) no-repeat center center;
+        background-size: cover;
+        border-radius: 110px;
+        padding: 60px;
+        text-align: center;
+        box-shadow: 0 0 20px rgb(0 0 0 / 0%);
+        position: relative;
+        z-index: 0;
+        transition: transform 0.3s; /* Added transition for the quote */
+    }
+    .quote-container::before {
+        content: '';
+        position: absolute;
+        top: 0px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0 0 0 / 75%);
+        border-radius: 110px;
+        z-index: -1;
+    }
+    .quote-container q {
+        font-family: 'Pacifico', cursive;
+        font-size: 2.5rem;
+        color: #fff;
+        margin: 20px 0;
+    }
+    .collage {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .collage img {
+        width: 230px;
+        height: 150px;
+        object-fit: cover;
+        border: 5px solid #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .collage img:nth-child(1) {
+        transform: rotate(-5deg);
+    }
+    .collage img:nth-child(2) {
+        transform: rotate(3deg);
+        margin-left: 30px;
+    }
+    .collage img:nth-child(3) {
+        transform: rotate(-3deg);
+        margin-left: 60px;
+    }
+    .collage img:nth-child(4) {
+        transform: rotate(5deg);
+        margin-left: 90px;
+    }
+    .collage img:hover {
+        transform: scale(1.1);
+    }
+    .quote-container:hover {
+        transform: translateY(-50%) rotate(5deg) scale(1.1); /* Added hover effect for the quote */
+    }
+    .positionable-image {
+        position: absolute;
+        width: 176px;
+        transform: rotate(90deg);
+        height: 383px;
+        object-fit: cover;
+        border: 0px solid #fff;
+        border-radius: 0px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .positionable-image1 {
+        position: absolute;
+        width: 176px;
+        transform: rotate(90deg);
+        height: 383px;
+        object-fit: cover;
+        border: 0px solid #fff;
+        border-radius: 0px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .positionable-image2 {
+        position: absolute;
+        width: 217px;
+        transform: rotate(90deg) scaleY(-1);
+        height: 455px;
+        object-fit: cover;
+        border: 0px solid #fff;
+        border-radius: 0px;
+        box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+    .tagline {
+      font-size: 1.2em;
+      color: #4CAF50;
+        text-align: center;
+        margin-top: -7px;
+        font-style: italic;
+        font-weight: bold;
+        background-color: #ebebeb;
+        padding: -26px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 0%);
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <h1>ReSilientYou</h1>
+        <p class="tagline">Your path to mental well-being starts here.</p>
+        <div class="button-container">
+            <a href="{% url 'login' %}" class="login-button">Login</a>
+            <a href="{% url 'admin:index' %}">Admin</a>
+            <a href="{% url 'register' %}">Register</a>
+            <a href="{% url 'profile' %}">Profile</a>
+        </div>
+    </div>
+    <div class="quote-container">
+        <q>Healing takes time, and asking for help is a courageous step.</q>
+    </div>
+    <div class="collage">
+        <img src="{% static 'images/home.jpg' %}" alt="Collage Image 1">
+        <img src="{% static 'images/home1.jpg' %}" alt="Collage Image 2">
+        <img src="{% static 'images/home2.jpg' %}" alt="Collage Image 3">
+        <img src="{% static 'images/home3.jpg' %}" alt="Collage Image 4">
+    </div>
+    <!-- <img src="{% static 'images/ivy.png' %}" alt="Positionable Image" class="positionable-image" style="top: -155px; left: 1208px;">
+    <img src="{% static 'images/ivy.png' %}" alt="Positionable Image" class="positionable-image1" style="top: -155px; left: 495px;">
+    <img src="{% static 'images/ivy.png' %}" alt="Positionable Image" class="positionable-image2" style="top: -124px; left: 791px;"> -->
+    <!-- Example of a positionable image -->
+</body>
+</html>

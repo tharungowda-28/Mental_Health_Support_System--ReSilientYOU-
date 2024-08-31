@@ -1,0 +1,99 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Therapist{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist List</title>
+    <style>
+        /* Inline CSS for styling the therapist list */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .card img {
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+
+        .card h2 {
+            margin: 0;
+            color: #4CAF50;
+        }
+
+        .card p {
+            margin: 5px 0;
+        }
+
+        .card .specialization {
+            font-style: italic;
+            color: #666;
+        }
+
+        .help-line {
+            text-align: center;
+            padding: 20px;
+            background: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Therapists</h1>
+        {% for therapist in therapists %}
+            <div class="card">
+                <img src="{{ therapist.profile_picture.url }}" alt="{{ therapist.name }}">
+                <div class="details">
+                    <h2>{{ therapist.name }}</h2>
+                    <p><strong>Phone:</strong> {{ therapist.phone }}</p>
+                    <p><strong>Email:</strong> {{ therapist.email }}</p>
+                    <p><strong>Specialization:</strong> <span class="specialization">{{ therapist.specialization }}</span></p>
+                    <a href="{% url 'therapist_detail' therapist.pk %}">View Details</a>
+                </div>
+            </div>
+        {% endfor %}
+        
+        <div class="help-line">
+            <h2>Need Help?</h2>
+            <p>If you are in crisis or need immediate support, please reach out to our mental health help line.</p>
+            <p><strong>Help Line Number:</strong> 1-800-123-4567</p>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

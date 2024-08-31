@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .result-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h1 {
+      color: #4CAF50;
+    }
+
+    .result-score {
+      font-size: 1.5em;
+      margin: 20px 0;
+    }
+
+    .result-message {
+      font-size: 1.2em;
+      color: #666;
+    }
+  </style>
+
+  <div class="result-container">
+    <h1>{{ quiz.title }} Results</h1>
+    <p class="result-score">Your Score: {{ score }}</p>
+    <p class="result-message">{{ result }}</p>
+  </div>
+{% endblock %}

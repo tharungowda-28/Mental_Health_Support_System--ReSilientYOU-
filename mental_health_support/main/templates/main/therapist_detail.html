@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ therapist.name }}</title>
+    <style>
+        /* Inline CSS for therapist_detail.html */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            border-radius: 10px;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 3px solid #4CAF50;
+        }
+
+        .header div {
+            flex-grow: 1;
+        }
+
+        .header h1 {
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            color: #4CAF50;
+        }
+
+        .header h2 {
+            margin: 0;
+            font-size: 1.5em;
+            color: #666;
+        }
+
+        .details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .details p {
+            flex: 1 1 48%;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .details p strong {
+            display: block;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .about {
+            margin-top: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #45a049;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header img {
+                margin-bottom: 15px;
+            }
+
+            .details p {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="{{ therapist.profile_picture.url }}" alt="{{ therapist.name }}">
+            <div>
+                <h1>{{ therapist.name }}</h1>
+                <h2>{{ therapist.specialization }}</h2>
+            </div>
+        </div>
+        <div class="details">
+            <p>
+                <strong>Experience:</strong> {{ therapist.experience }} years
+            </p>
+            <p>
+                <strong>Available Slots:</strong> {{ therapist.available_slots }}
+            </p>
+            <p>
+                <strong>Languages:</strong> {{ therapist.languages }}
+            </p>
+            <p>
+                <strong>Contact:</strong> {{ therapist.phone }}
+            </p>
+            <p>
+                <strong>Location:</strong> {{ therapist.location }}
+            </p>
+        </div>
+        <div class="about">
+            <h2>About</h2>
+            <p>{{ therapist.about }}</p>
+        </div>
+        <a href="{% url 'therapist_list' %}" class="back-link">Back to List</a>
+    </div>
+</body>
+</html>

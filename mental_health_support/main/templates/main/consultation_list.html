@@ -1,0 +1,144 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #4CAF50;
+      margin: 0;
+      font-size: 2em;
+    }
+
+    .back-button, .book-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .back-button:hover, .book-button:hover {
+      background-color: #45a049;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .book-button.disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .consultation-list {
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .consultation-item {
+      padding: 15px;
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      align-items: center;
+    }
+
+    .consultation-item:last-child {
+      border-bottom: none;
+    }
+
+    .therapist-picture {
+      flex-shrink: 0;
+      margin-right: 20px;
+    }
+
+    .therapist-picture img {
+      width: 100px;
+      height: 100px;
+      border-radius: 10px; /* Rounded square shape */
+      /* border: 2px solid #4CAF50; */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Shadow effect */
+      object-fit: cover; /* Ensures the image covers the box while maintaining aspect ratio */
+    }
+
+    .consultation-details {
+      flex-grow: 1;
+    }
+
+    .consultation-date-time {
+      font-size: 1.1em;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .therapist-name {
+      font-size: 1em;
+      margin-bottom: 5px;
+    }
+
+    .confirmed {
+      color: #4CAF50;
+      font-weight: bold;
+    }
+
+    .pending {
+      color: #f44336;
+      font-weight: bold;
+    }
+  </style>
+
+    <div class="header-container">
+      <h1>My Consultations</h1>
+      <a href="{% url 'profile' %}" class="back-button">Back to Profiles</a>
+      <a href="{% url 'book_consultation' 0 %}" class="book-button">Book New Consultation</a> </div>
+    </div>
+
+
+  <ul class="consultation-list">
+    {% for consultation in consultations %}
+      <li class="consultation-item">
+        <div class="therapist-picture">
+          {% if consultation.therapist.profile_picture %}
+            <img src="{{ consultation.therapist.profile_picture.url }}" alt="{{ consultation.therapist.name }}">
+          {% else %}
+            <img src="{% static 'images/default_therapist_picture.jpg' %}" alt="Default Therapist Picture">
+          {% endif %}
+        </div>
+        <div class="consultation-details">
+          <div class="consultation-date-time">
+            {{ consultation.date }} at {{ consultation.time }}
+          </div>
+          <div class="therapist-name">
+            with {{ consultation.therapist.name }}{% if consultation.therapist.user %} ({{ consultation.therapist.user.username }}){% endif %}
+          </div>
+          {% if consultation.confirmed %}
+            <div class="confirmed">(Confirmed)</div>
+          {% else %}
+            <div class="pending">(Pending)</div>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

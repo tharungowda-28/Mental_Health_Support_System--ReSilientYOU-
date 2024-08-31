@@ -1,0 +1,88 @@
+<!-- main/templates/main/yoga_detail.html -->
+
+{% extends 'main/base.html' %}
+{% block content %}
+<style>
+  .yoga-detail-container {
+    padding: 20px;
+  }
+
+  .yoga-detail-container h1 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+  }
+
+  .yoga-detail-container img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+
+  .yoga-detail-container h2 {
+    margin-top: 20px;
+    color: #333;
+  }
+
+  .yoga-detail-container p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .yoga-detail-container a.video-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .yoga-detail-container a.video-link:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  .back-button-container {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+
+  .back-button:hover {
+    background-color: #45a049;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+</style>
+
+<div class="yoga-detail-container">
+  <div class="back-button-container">
+    <a href="{% url 'yoga_list' %}" class="back-button">Back to Yoga List</a>
+  </div>
+  <h1>{{ yoga_asana.name }}</h1>
+  <img src="{{ yoga_asana.image.url }}" alt="{{ yoga_asana.name }}">
+  <h2>Description</h2>
+  <p>{{ yoga_asana.description }}</p>
+  <h2>Steps</h2>
+  <p>{{ yoga_detail.steps }}</p>
+  <h2>Benefits</h2>
+  <p>{{ yoga_detail.benefits }}</p>
+  <h2>Video Help</h2>
+  <p>{% if yoga_detail.video_url %}
+    <a href="{{ yoga_detail.video_url }}" target="_blank" class="video-link">Watch Video</a>
+  {% endif %}</p>
+</div>
+{% endblock %}

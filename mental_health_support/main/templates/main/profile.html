@@ -1,0 +1,120 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-header">    
+        <h2>Profile</h2>
+    </div>
+    <div class="profile-form">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-update-profile">Update Profile</button>
+        </form>
+    </div>
+
+    <div class="dashboard-container">
+        <h3>DASHBOARD</h3>
+        <div class="dashboard-buttons">
+            <a href="{% url 'article_list' %}" class="dashboard-button">Articles</a>
+            <a href="{% url 'therapist_list' %}" class="dashboard-button">Therapists</a>
+            <a href="{% url 'yoga_list' %}" class="dashboard-button">Mind Care</a>
+            <a href="{% url 'quiz_list' %}" class="dashboard-button">Quizzes</a>
+            <a href="{% url 'consultation_list' %}" class="dashboard-button">Consultations</a>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Inline CSS for profile.html */
+
+body {
+    /* background: url("{% static 'images/download.jpeg' %}") no-repeat center center fixed; 
+    background-size: cover;  */
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+.profile-container {
+    background-color: rgb(250 250 250);
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    box-shadow: 0 0 20px rgb(0 0 0 / 47%);
+}
+
+.profile-header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.profile-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.profile-form .btn-update-profile {
+    align-self: center;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.profile-form .btn-update-profile:hover {
+    background-color: #0056b3;
+}
+
+.dashboard-container {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.dashboard-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.dashboard-button {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 1px solid #4CAF50;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.dashboard-button:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+}
+
+.positionable-image2 {
+    position: absolute;
+    width: 217px;
+    transform: rotate(90deg) scaleY(-1);
+    height: 455px;
+    object-fit: cover;
+    border: 0px solid #fff;
+    border-radius: 0px;
+    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+</style>
+
+{% endblock %}

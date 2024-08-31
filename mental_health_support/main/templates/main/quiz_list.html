@@ -1,0 +1,95 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #4CAF50;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .quiz-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .quiz-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      width: 300px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .quiz-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .quiz-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .quiz-content {
+      padding: 20px;
+    }
+
+    .quiz-title {
+      font-size: 1.5em;
+      margin: 0;
+      color: #4CAF50;
+    }
+
+    .quiz-description {
+      font-size: 1em;
+      color: #666;
+      margin: 10px 0;
+    }
+
+    .quiz-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border-radius: 5px;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .quiz-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+  <h1>Self-Assessment Quizzes</h1>
+  <div class="quiz-container">
+    {% for quiz in quizzes %}
+      <a href="{% url 'take_quiz' quiz.id %}" class="quiz-card">
+        <img src="{% if quiz.image %}{{ quiz.image.url }}{% else %}{% static 'images/quiz.jpeg' %}{% endif %}" alt="{{ quiz.title }}" class="quiz-image">
+        <div class="quiz-content">
+          <h2 class="quiz-title">{{ quiz.title }}</h2>
+          <p class="quiz-description">{{ quiz.description|default:"No description available." }}</p>
+          <div class="quiz-button">Take Quiz</div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}

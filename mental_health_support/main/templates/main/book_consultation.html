@@ -1,0 +1,90 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      color: #4CAF50;
+      margin: 0;
+    }
+
+    .back-button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    .back-button:hover {
+      background-color: #45a049;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .form-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    form p {
+      margin-bottom: 15px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+  </style>
+
+  <div class="header-container">
+    <h1>Book Consultation</h1>
+    <a href="{% url 'consultation_list' %}" class="back-button">Back to consultations</a>
+  </div>
+
+  <div class="form-container">
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Book Consultation</button>
+    </form>
+  </div>
+{% endblock %}
